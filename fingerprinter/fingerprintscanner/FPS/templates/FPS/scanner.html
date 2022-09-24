@@ -1,0 +1,954 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindgroom | Scanner</title>
+    <link rel="stylesheet" href="{% static 'font-awesome.min.css' %} ">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: rgb(0, 0, 0) !important;
+            font-family: 'Poppins' !important;
+            font-weight: 500 !important;
+            color: rgb(0, 0, 0);
+        }
+
+        a {
+            text-decoration: none;
+            font-family: 'Poppins' !important;
+            font-weight: 500 !important;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        input,
+        span,
+        button {
+            font-family: 'Poppins' !important;
+            font-weight: 500 !important;
+        }
+    </style>
+
+    <!-- <link rel="stylesheet" href="/static/css/userinterface/scanner-page.css"> -->
+
+    <link rel="stylesheet" href="{% static 'css/userinterface/registration-form-style.css' %} ">
+    <script src="{% static 'jquery-3.5.1.min.js' %} " integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+        crossorigin="anonymous"></script>
+
+    <style>
+        .container {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+
+        .scanner-frame {
+            margin: 0;
+            padding: 0;
+            height: 310px;
+            width: 100%;
+            overflow: hidden;
+            background-color: #4caf50;
+            border-radius: 0 0 45px 45px;
+            position: relative;
+        }
+
+        .textarea {
+            height: 40px;
+            width: 100%;
+            font-size: 25px;
+            font-weight: bold;
+            overflow: hidden;
+            color: rgb(0, 0, 0);
+            position: absolute;
+            top: 45px;
+        }
+
+        #camera-blur-section-upper {
+            position: absolute;
+            top: 40px;
+            height: 40px;
+            width: 100%;
+            /* padding-top: 5%; */
+            background-color: #4caf50;
+            /* z-index: 9999; */
+        }
+
+        #camera-blur-section-lower {
+            position: absolute;
+            top: 202px;
+            height: 40px;
+            width: 100%;
+            /* padding-top: 5%; */
+            background-color: #4caf50
+            /* z-index: 9999; */
+        }
+
+        /* #camera-left {
+        position: absolute;
+        left: 0;
+        z-index: 9999;
+    } */
+
+        /* #camera-right {
+        position: absolute;
+        right: 0;
+        z-index: 9999;
+    } */
+
+        .scanner-frame .scanner-area-left {
+            height: 200px;
+            width: 120px;
+            overflow: hidden;
+            border: 5px solid #4caf50;
+            border-left: 0;
+            border-radius: 80px 80px 0 0;
+            z-index: 9999;
+            margin: auto;
+            margin-top: 105px;
+        }
+
+        .scanner-frame .scanner-area-right {
+            /* background-color: white; */
+            height: 120px;
+            width: 200px;
+            overflow: hidden;
+            border: 5px solid #4caf50;
+            border-right: 0;
+            border-radius: 80px 0 0 80px;
+            position: absolute;
+            top: 80px;
+            right: 0;
+            z-index: 9999;
+        }
+
+        .left-finger-snap {
+            text-align: center;
+            display: inline-block;
+
+        }
+
+        .left-finger-snap div {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            height: 60px;
+            width: 91px;
+            background-color: white;
+            border-radius: 23px;
+            font-size: 17px;
+            color: rgb(0, 0, 0);
+            ;
+
+        }
+
+        .left-finger-snap div:hover {
+            background-color: #4caf50;
+            color: rgb(0, 0, 0);
+        }
+
+
+        #message {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+        }
+
+
+        .logo {
+            padding-top: 20%;
+        }
+
+        .capture-btn {
+            margin: 10% 0 0 0;
+            text-align: center;
+        }
+
+        #capture-btn {
+            background-color: black !important;
+            color: #4caf50;
+            /* width: 205px; */
+            /* height: 50px; */
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: 1px solid white;
+            padding: 4% 12%;
+            /* box-shadow: 0px 2px white; */
+        }
+        #capture-btn:hover {
+            background-color: black !important;
+            color: white;
+            /* width: 205px; */
+            /* height: 50px; */
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: 1px solid #4caf50;
+            padding: 4% 12%;
+            /* box-shadow: 0px 2px white; */
+        }
+
+        #capture-btn:active {
+            color: white;
+            transform: translateY(4px);
+        }
+        #sk-btn{
+            height: 40px;
+             width:70px;
+            border-radius: 30px;
+            border: 1px solid white;
+            font-size: 15px;
+            color: #4caf50;
+            background-color: black !important;
+            padding: 2% 3%;
+            margin-top: 13%;
+
+        }
+             #sk-btn:hover {
+             height: 40px;
+             width: 70px;
+            border-radius: 30px;
+            font-size: 15px;
+            padding: 2% 3%;
+            margin-top: 13%;
+            background-color:black;
+            border: 1px solid #4caf50;
+            background: transparent;
+            color:white;
+        }
+        #next-btn {
+             height: 40px;
+             width:250px;
+            border-radius: 30px;
+            border: 1px solid white;
+            font-size: 15px;
+            color: #4caf50;
+            background-color: black !important;
+            padding: 2% 3%;
+            margin-top: 13%;
+        }
+        #next-btn:hover {
+             height: 40px;
+             width: 250px;
+            border-radius: 30px;
+            font-size: 15px;
+            padding: 2% 3%;
+            margin-top: 13%;
+            background-color:black;
+            border: 1px solid #4caf50;
+            background: transparent;
+            color:white;
+        }
+
+        .login-form {
+            /* display: block; */
+            text-align: center;
+            margin: 25px auto;
+        }
+
+        .login-form form {
+            border: 2px solid rgb(0, 0, 0);
+            border-radius: 50px;
+            background-color: #4caf50;
+            display: inline-block;
+            text-align: center;
+            padding: 30px;
+            padding-top: 10px;
+            height: max-content;
+            width: 73%;
+        }
+
+        #back-btn {
+            position: absolute;
+            top: 29px;
+            left: 10px;
+            font-size: 30px;
+            /* background-color: #4caf50 ; */
+            cursor: pointer;
+            border-radius: 9px;
+            color: #4caf50;
+            /* padding: 0px 15px 7px 15px; */
+        }
+
+        .finger-snap-text {
+            position: absolute;
+            z-index: 99999;
+            margin: 15px -72px;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 20% auto;
+            border: 1px solid rgb(0, 0, 0);
+            width: 290px;
+            text-align: center;
+        }
+
+        .modalhead {
+            background-color: #4caf50 ;
+            padding: 8px 8px 8px 0px;
+        }
+
+        .captured-finger-name {
+            font-size: 15px;
+            /* padding: 10px 10px 10px 10px; */
+            margin-left: -30px;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #4caf50 ;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            margin: -9px -8px 0 0;
+            background-color: rgb(0, 0, 0);
+            padding: 1px 8px;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-content button {
+            font-size: 15px;
+            margin: 8px 0 7px 0;
+            background-color: #4caf50 ;
+            border: none;
+            padding: 4px 25px;
+            border-radius: 5px;
+            color: rgb(0, 0, 0);
+            cursor: pointer;
+        }
+
+        .captured-image {
+            margin-top: 15px;
+        }
+
+        /* Loader CSS */
+        .loader {
+            border: 5px solid #4caf50 ;
+            border-radius: 50%;
+            border-top: 5px solid rgb(0, 0, 0);
+            width: 60px;
+            height: 60px;
+            -webkit-animation: spin 0.8s linear infinite;
+            animation: spin 0.8s linear infinite;
+            margin: 70% auto;
+        }
+
+        /* Safari */
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+
+
+    <script src="{% static 'jquery.min.js' %} "></script>
+</head>
+
+<body>
+
+
+    <div class="container" id="container">
+        <div class="scanner-frame">
+            <div class="textarea" style="text-align: center;" id="finger-name"
+                style="color: rgb(0, 0, 0);font-size: 25px;">
+            </div>
+
+            <!-- <div id="camera-left" ></div> -->
+            <!-- <div id="camera-blur-section-upper"></div> -->
+            <div class="scanner-area-left" id="scanner-area-left" style="overflow: hidden;"><video id="camera-left"
+                    style="width: auto; height: auto;margin-top: -220px !important;margin-left: -180px !important;"
+                    autoplay playsinline></video></div>
+            <!-- <div id="camera-blur-section-lower"></div> -->
+            <p id="message" style="color: red;" style="z-index: 10000;"></p>
+            <!-- <div id="camera-right" hidden> </div> -->
+            <canvas id="canvas" class="d-none" hidden></canvas>
+            <canvas id="canvas1" class="d-none" ></canvas>
+
+            <!-- Instruction -->
+            <div id="instructions-text"
+                style="margin: 0 0 0 0; color: rgb(0, 0, 0);position: absolute;z-index: 1200000;font-size: 14px;top: 115px;left: 0;text-align: left;width: 115px;">
+                <ul style="margin: 0 0 0 15px; padding: 0;">
+                    <li>Image quality should be HIGH</li>
+                    <li>Background should be WHITE</li>
+                </ul>
+            </div>
+            <div id="instructions-text"
+                style="color: rgb(0, 0, 0);position: absolute;z-index: 1200000;font-size: 14px;top: 115px;right: 0px;width: 117px;text-align: left;">
+                <ul style="margin: 0; padding: 0;">
+                    <li>Flash light should be ON</li>
+                    <li>Please ensure maximum visibility of finger line</li>
+                </ul>
+            </div>
+
+            <div class="scanner-area-right" id="scanner-area-right" hidden><video id="camera-right"
+                    style="width: auto; height: auto;margin-top:-260px !important;" autoplay playsinline></video></div>
+            <!-- <button style="position: absolute;margin: 0 auto;bottom:5px;background-color: #C9AE5D ;color: white;z-index: 10000;border: none;"
+            onclick="flipCamera()"><img  src="/static/image/camera-icon.png" alt="Flip Camera" height="40px" height="40px"></button> -->
+            <!-- <input type="checkbox" name="torch" id="torch" hidden><label for="torch"
+            style="position: absolute;left: 45%;bottom:5px;z-index: 10000;cursor: pointer;"><img id="start-torch-logo"
+                src="/static/image/torch-icon.png" alt="" height="50px" width="50px"></label> -->
+            <button id="switch" class="switch"
+                style="position: absolute;border: none;background: none;left:5%;bottom:5px;z-index: 10000;cursor: pointer;"><img
+                    id="start-torch-logo" src="{% static 'image/torch-icon.png' %} " alt="" height="50px"
+                    width="50px"></button>
+        </div>
+        <br><br>
+        <!-- <div hidden> -->
+        <!-- <img id="myimage1" src="" alt="" hidden> -->
+        <!-- <img id="myimage2" src="" alt="" hidden>
+        <img id="myimage3" src="" alt="" hidden>
+        <img id="myimage4" src="" alt="" hidden>
+        <img id="myimage5" src="" alt="" hidden>
+        <img id="myimage6" src="" alt="" hidden>
+        <img id="myimage7" src="" alt="" hidden>
+        <img id="myimage8" src="" alt="" hidden>
+        <img id="myimage9" src="" alt="" hidden>
+        <img id="myimage10" src="" alt="" hidden> -->
+        <!-- </div> -->
+        <div class="container">
+            <div class="left-finger-snap">
+                <div onclick="retakePicture('retakePicModel1')" id="finger1">
+                    <img id="myimage1" src="{% static 'image/white-background image.jpg' %} " height="60px"
+                        width="91px" style="border-radius: 10px;">
+
+                    <span class="finger-snap-text" id="snap-text-span1">Left</span>
+                </div>
+            </div>&nbsp;&nbsp;
+            <div class="left-finger-snap" >
+                <div onclick="retakePicture('retakePicModel2')" id="finger2">
+                    <img id="myimage2" src="{% static 'image/white-background image.jpg' %}"  height="60px"
+                        width="91px" style="border-radius: 10px;">
+                    <span class="finger-snap-text" id="snap-text-span2" style="text-align: center;">Center</span>
+                </div>
+            </div>&nbsp;&nbsp;
+            <div class="left-finger-snap" >
+                <div onclick="retakePicture('retakePicModel3')" id="finger3">
+                    <img id="myimage3" src="{% static 'image/white-background image.jpg' %}" height="60px"
+                        width="91px" style="border-radius: 10px;">
+                    <span class="finger-snap-text" id="snap-text-span3">Right</span>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container">
+            <div class="left-finger-snap" >
+                <div onclick="retakePicture('p_retakePicModel1')" id="finger1">
+                    <img id="p_myimage1" src="{% static 'image/white-background image.jpg' %} "  height="60px"
+                        width="91px" style="border-radius: 10px;">
+
+                    <span class="finger-snap-text" id="snap-text-span1"></span>
+                </div>
+            </div>&nbsp;&nbsp;
+            <div class="left-finger-snap">
+                <div onclick="retakePicture('p_retakePicModel2')" id="finger2">
+                    <img id="p_myimage2" src="{% static 'image/white-background image.jpg' %}" height="60px"
+                        width="91px" style="border-radius: 10px;">
+                    <span class="finger-snap-text" id="snap-text-span2"></span>
+                </div>
+            </div>&nbsp;&nbsp;
+            <div class="left-finger-snap" >
+                <div onclick="retakePicture('p_retakePicModel3')" id="finger3">
+                    <img id="p_myimage3" src="{% static 'image/white-background image.jpg' %}"  height="60px"
+                        width="91px" style="border-radius: 10px;">
+                    <span class="finger-snap-text" id="snap-text-span3"></span>
+                </div>
+            </div>
+        </div>
+        <div class="capture-btn">
+            <button id="capture-btn" onclick="take_snapshot()">Capture</button>
+        </div>
+
+        <div class="logo" style="padding-top: 5%;">
+            <img src="{% static 'image/astro-croped-logo.gif' %} " alt="Logo" height="80px" width="75px">
+        </div>
+        <br>
+
+        <!-- <button type="button" id="next-btn" data-toggle="modal" data-target="#userForm"> Next -></button> -->
+        <button type="button" onclick="skipbtn();" id="sk-btn" > Skip</button>&nbsp;&nbsp;&nbsp;
+        <!--<a href="{% url 'thanks' %}" <button type="button" id="next-btn"> Upload</button></a>&nbsp;&nbsp;&nbsp;-->
+        <button type="button" onclick="nextbtn();" id="sk-btn"> Next</button>&nbsp;&nbsp;&nbsp;
+
+    </div>
+    <!-- User information form (hidden) -->
+    <!-- <div class="image-data" id="image-data" hidden>
+    <input type="text" id="image1" hidden>
+    <input type="text" id="image2" hidden>
+    <input type="text" id="image3" hidden>
+    <input type="text" id="image4" hidden>
+    <input type="text" id="image5" hidden>
+    <input type="text" id="image6" hidden>
+    <input type="text" id="image7" hidden>
+    <input type="text" id="image8" hidden>
+    <input type="text" id="image9" hidden>
+    <input type="text" id="image10" hidden>
+
+</div> -->
+
+    <input type="text" id="image1" name="image1" hidden>
+    <input type="text" id="image2" name="image2" hidden>
+    <input type="text" id="image3" name="image3" hidden>
+    <input type="text" id="image4" name="image4" hidden>
+    <input type="text" id="image5" name="image5" hidden>
+    <input type="text" id="image6" name="image6" hidden>
+    <input type="text" id="image7" name="image7" hidden>
+    <input type="text" id="image8" name="image8" hidden>
+    <input type="text" id="image9" name="image9" hidden>
+    <input type="text" id="image10" name="image10" hidden>
+
+    <!-- Retake Picture -->
+    <div id="retakePicModel1" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modalhead"><span class="captured-finger-name"></span><span class="close"
+                    onclick="closeModel('retakePicModel1')">&times;</span></div>
+            <div class="captured-image"><img id="captured-image1" src="" alt="Not captured yet !"
+                    height="120px" width="200px"></div>
+            <button id="modal-retake-btn" onclick="reset(1,'retakePicModel1')">Retake</button>
+        </div>
+    </div>
+    <div id="retakePicModel2" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modalhead"><span class="captured-finger-name"></span><span class="close"
+                    onclick="closeModel('retakePicModel2')">&times;</span></div>
+            <div class="captured-image"><img id="captured-image2" src="" alt="Not captured yet !"
+                    height="120px" width="200px"></div>
+            <button id="modal-retake-btn" onclick="reset(2,'retakePicModel2')">Retake</button>
+        </div>
+    </div>
+    <div id="retakePicModel3" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modalhead"><span class="captured-finger-name"></span><span class="close"
+                    onclick="closeModel('retakePicModel3')">&times;</span></div>
+            <div class="captured-image"><img id="captured-image3" src="" alt="Not captured yet !"
+                    height="120px" width="200px"></div>
+            <button id="modal-retake-btn" onclick="reset(3,'retakePicModel3')">Retake</button>
+        </div>
+    </div>
+
+    <!--This is for processed images -->
+    <div id="p_retakePicModel1" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modalhead"><span class="captured-finger-name"></span><span class="close"
+                    onclick="closeModel('p_retakePicModel1')">&times;</span></div>
+            <div class="captured-image"><img id="p_captured-image1" src="" alt="Not captured yet !"
+                    height="120px" width="200px"></div>
+
+        </div>
+    </div>
+    <div id="p_retakePicModel2" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modalhead"><span class="captured-finger-name"></span><span class="close"
+                    onclick="closeModel('p_retakePicModel2')">&times;</span></div>
+            <div class="captured-image"><img id="p_captured-image2" src="" alt="Not captured yet !"
+                    height="120px" width="200px"></div>
+
+        </div>
+    </div>
+    <div id="p_retakePicModel3" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modalhead"><span class="captured-finger-name"></span><span class="close"
+                    on                  document.getElementById("captured-image" + index).src = data_uri;
+                    console.log(document.getElementById("myimage1").src);
+click="closeModel('p_retakePicModel3')">&times;</span></div>
+            <div class="captured-image"><img id="p_captured-image3" src="" alt="Not captured yet !"
+                    height="120px" width="200px"></div>
+
+        </div>
+    </div>
+
+    <!-- Page Loader -->
+    <div id="page-loader" class="modal">
+        <!-- Modal content -->
+        <div class="loader"></div>
+    </div>
+
+    <!-- Webcam.min.js -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"
+    integrity="sha512-dQIiHSl2hr3NWKKLycPndtpbh5iaHLo6MwrXm7F0FM5e+kL2U16oE9uIwPHUl6fQBeCthiEuV/rzP3MiAB8Vfw=="
+    crossorigin="anonymous"></script> -->
+
+    <script type="text/javascript" src="{% static 'webcam-easy.min.js' %} "></script>
+    <script type="text/javascript" src="{% static 'js/scanner-page.js' %} "></script>
+    <script src="{% static 'jquery-3.5.1.min.js' %} " integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+        crossorigin="anonymous"></script>
+
+    <script src="{% static 'imagecapture.min.js' %} " integrity="sha256-Iu8EOUJVBbjF8n7AVLrLC+TURJaCeU3+U5H6P/hvX+A="
+        crossorigin="anonymous"></script>
+
+
+
+
+    <script>
+
+        var fingerNum = 1;
+        var left_camera = document.getElementById("camera-left");
+        var right_camera = document.getElementById("camera-right");
+        var left_camera_border = document.getElementById("scanner-area-left");
+        var right_camera_border = document.getElementById("scanner-area-right");
+        var i = 1;
+        let fingers_name = ['{{fname}} Left Angle- L1', '{{fname}} Center Angle- L1', '{{fname}} Right Angle- L1'];
+        document.getElementById("finger-name").innerHTML = fingers_name[0];
+
+
+        function skipbtn(){
+
+            if(i<3){
+                var fno={{fno}}
+            var next = fno+1;
+            window.location="/scanner/"+next;
+            }
+            else{
+                document.getElementById("finger-name").innerHTML = fingers_name[i];
+                i+=1;
+            }
+
+        }
+
+        function nextbtn(){
+            if (confirm('Are you sure you want Go To Next Finger?')) {
+            // Go To next Finger!
+             var fno={{fno}}
+            var next = fno+1;
+            window.location="/scanner/"+next;
+            }
+
+
+        }
+
+        function checkInvalidation() {
+            var img_1 = $("#image1").val();
+            var img_2 = $("#image2").val();
+            var img_3 = $("#image3").val();
+            var img_4 = $("#image4").val();
+            var img_5 = $("#image5").val();
+            var img_6 = $("#image6").val();
+            var img_7 = $("#image7").val();
+            var img_8 = $("#image8").val();
+            var img_9 = $("#image9").val();
+            var img_10 = $("#image10").val();
+            if ((img_1 === "" || img_1 === null) || (img_2 === null || img_2 === "") || (img_3 === null || img_3 === "") || (img_4 === null || img_4 === "") || (img_5 === null || img_5 === "") || (img_6 === null || img_6 === "") || (img_7 === null || img_7 === "") || (img_8 === null || img_8 === "") || (img_9 === null || img_9 === "") || (img_10 === null || img_10 === "")) {
+                return "invalid";
+            } else {
+                return "success";
+            }
+        }
+
+        function closeModel(element_id) {
+            document.getElementById(element_id).style.display = "none";
+        }
+
+        function retakePicture(element_id) {
+            document.getElementById(element_id).style.display = "block";
+        }
+
+
+        var count;
+        function saveImages(user_id, admincode, image, image_name) {
+            $.ajax({
+                type: 'POST',
+                url: "/image-processing",
+                data: { 'user_id': user_id, 'admincode': admincode, 'image': image, 'image_name': image_name },
+                success: function (response) {
+                    if (response) {
+                        console.log(image_name);
+                        count -= 1;
+                        if (count === 0) {
+                            window.location.href = "thanks.html";
+                        }
+
+                    }
+                }
+            })
+        };
+
+
+
+
+        function cropImage(data_uri, index) {
+            console.log("into the crop")
+            var token = $("input[name='csrfmiddlewaretoken']").val();
+            console.log(token)
+            console.log("hello")
+            console.log(data_uri)
+            var iname = document.getElementById("finger-name").innerHTML;
+            $.ajax({
+                //headers: { "X-CSRFToken": token },
+                type: 'POST',
+                url: "{% url 'cropimg' %}",
+                data: {
+                    'raw_image': data_uri,
+                    'iname': iname,
+                    'csrfmiddlewaretoken': token
+                },
+
+                success: function (response) {
+
+                    console.log("success");
+                    img_data = response;
+                    // words = response.replace(/\n/g, "");
+                    document.getElementById("p_myimage" + index).setAttribute('src', '/media/' + response['data']);
+                    document.getElementById("p_captured-image" + index).src = '/media/' + response['data'];
+                    document.getElementById("captured-image" + index).src = data_uri;
+                    console.log(document.getElementById("myimage1").src);
+                    console.log(response['data']);
+                    //location.reload();
+                    var fno={{fno}}
+                if({{fno}}===10 && i===4){
+                    document.getElementById("finger-name").innerHTML = "All fingers captured";
+                }
+                if (i === 4) {
+                     setTimeout(function () {
+                        alert("Proceed to next finger")
+                        var next = fno+1;
+                        window.location="/scanner/"+next;
+                    }, 2000);
+
+                }
+                }
+            });
+
+        }
+
+
+        function take_snapshot() {
+            if (i >= 3) {
+                document.getElementById("finger-name").innerHTML = "All angle's captured";
+            }
+
+            else{
+                document.getElementById("finger-name").innerHTML = fingers_name[i];
+            }
+
+            if (i > 3) {
+                document.getElementById("finger-name").innerHTML = "All angle's captured";
+            } else {
+                let data_uri = webcam1.snap();
+              document.getElementById("myimage" + i).src = data_uri;
+                document.getElementById("myimage" + i).onload = function () {
+                    //alert(this.width + 'x' + this.height);
+                }
+                cropImage(data_uri, i);
+                //document.getElementsByClassName("captured-finger-name")[i - 1].innerHTML = fingers_name[i];
+                document.getElementById("snap-text-span" + i).innerHTML = "View";
+                document.getElementById("snap-text-span" + i).style.margin = "37px -67px";
+                document.getElementById("snap-text-span" + i).style.fontSize = "15px";
+                console.log(i);
+                $('#image' + i).on({
+                    'click': function () {
+                        $('#image' + i).attr('src', data_uri);
+                    }
+                });
+                // console.log(data_uri)
+                i = i + 1;
+
+
+            }
+        }
+
+
+
+
+
+
+
+
+
+        // Flash light function
+
+
+
+        const SUPPORTS_MEDIA_DEVICES = 'mediaDevices' in navigator;
+
+        if (SUPPORTS_MEDIA_DEVICES) {
+            //Get the environment camera (usually the second one)
+            navigator.mediaDevices.enumerateDevices().then(devices => {
+
+                const cameras = devices.filter((device) => device.kind === 'videoinput');
+
+                if (cameras.length === 0) {
+                    throw 'No camera found on this device.';
+                }
+                const camera = cameras[cameras.length - 1];
+
+                // Create stream and get video track
+                navigator.mediaDevices.getUserMedia({
+                    video: {
+                        deviceId: camera.deviceId,
+                        facingMode: ['environment'],
+                        height: { ideal: 1080 },
+                        width: { ideal: 1920 }
+                    }
+                }).then(stream => {
+                    const track = stream.getVideoTracks()[0];
+
+                    //Create image capture object and get camera capabilities
+                    const imageCapture = new ImageCapture(track)
+                    const photoCapabilities = imageCapture.getPhotoCapabilities().then(() => {
+
+                        //todo: check if camera has a torch
+
+                        //let there be light!
+                        var status = 0;
+                        const btn = document.querySelector('.switch');
+                        btn.addEventListener('click', function () {
+                            if (status === 0) {
+                                track.applyConstraints({
+                                    advanced: [{ torch: true }]
+                                });
+                                status = 1;
+                                // alert("Flash light Turned ON");
+                            } else {
+                                track.applyConstraints({
+                                    advanced: [{ torch: false }]
+                                });
+                                status = 0;
+                                // alert("Flash light Turned OFF");
+                            }
+
+
+                        });
+                    });
+                });
+            });
+
+            //The light will be on as long the track exists
+
+
+        }
+
+        // setTimeout(() => {
+        //     .addEventListener("onload", function () {
+        //         // document.getElementById("switch").click();
+        //         console.log("some things");
+        //     })
+        // }, 1000)
+
+        function switchOnFlash() {
+            document.getElementById("switch").click();
+            console.log("some things");
+        }
+
+        document.onload = switchOnFlash;
+
+
+
+
+
+
+
+
+
+
+
+
+
+//  if (user_id & admin_code)
+   //   csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+    //   data:{name:$('#user-name').val(),father_name:$('#user-fname').val(),phone:$('#user-phone').val(),email:$('#user-email').val(),country:$('#user-country').val(),admincode:$('#user-admincode').val()},
+
+        //   user_data.forEach(function myFunction(item, index){
+        //     user_id = item.id;
+        //     admin_code = item.admincode;
+        //   });
+
+
+
+
+    // $(document).on('submit', '#user-registration-form', function (e) {
+    //     e.preventDefault();
+    //     console.log("inajax Function");
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: "/registration-form",
+    //         data: $(this).serialize(),
+    //         // csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+    //         dataType: "json", contentType: "application/json; charset=utf-8",
+    //         // dataType: "json",
+    //         //   csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+    //         // error: function (xhr, status) {
+    //         //     alert(status);
+    //         // },
+    //         success: function (response) {
+    //             console.log(" in ajax response");
+    //             if (response.data === 'invalid') {
+    //                 alert("Invalid Details!!");
+    //             } else {
+    //                 user_id = response.data.id;
+    //                 admincode = response.data.admincode;
+    //                 finger_name = ['Left Thumb - L1', 'Left Index Finger - L2', 'Left Middle Finger - L3', 'Left Ring Finger - L4', 'Left Little Finger - L5', 'Right Thumb - R1', 'Right Index Finger - R2', 'Right Middle Finger - R3', 'Right Ring Finger - R4', 'Right Little Finger - R5'];
+    //                 for (i = 1; i < 11; i++) {
+    //                     image = $('#image' + i).val;
+    //                     saveImages(user_id, admincode, image, finger_name[i - 1]);
+    //                 }
+    //             }
+
+    //         }
+    //     });
+    // });
+    </script>
+
+
+
+</body>
+
+
+</html>

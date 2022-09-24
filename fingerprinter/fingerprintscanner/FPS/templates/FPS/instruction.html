@@ -1,0 +1,299 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Instruction</title>
+
+  <script src="{% static 'bootstrap.bundle.min.js' %}"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="{% static 'font-awesome.min.css' %}">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: rgb(8, 8, 8) !important;
+      font-family: 'Poppins' !important;
+      font-weight: 500 !important;
+      color: rgb(0, 0, 0);
+    }
+
+    a {
+      text-decoration: none;
+      font-family: 'Poppins' !important;
+      font-weight: 500 !important;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    input,
+    span,
+    button {
+      font-family: 'Poppins' !important;
+      font-weight: 500 !important;
+    }
+  </style>
+
+  <link rel="stylesheet" href=" {% static 'css/userinterface/main-style.css' %} ">
+  <script src="{% static 'jquery-3.5.1.min.js' %}" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+    crossorigin="anonymous"></script>
+  <style>
+    @media only screen and (max-width: 600px) {
+      .container-desktop {
+        margin: 10% 0 !important;
+      }
+
+      .container-desktop a {
+        margin: 0 !important;
+      }
+
+      body {
+        margin: 5% 5% !important;
+      }
+
+      #featured-text-desk {
+        display: none !important;
+      }
+
+      .middle-container {
+        display: block !important;
+        margin: 10% 0 10% 3% !important;
+      }
+
+      #middle-container-image {
+        float: left !important;
+      }
+
+      #middle-container-image img {
+        height: 200px !important;
+        width: 200px !important;
+      }
+
+      #login-btn {
+        float: center !important;
+        margin-top: 6px !important;
+      }
+
+      #login-btn a {
+        display: block !important;
+        margin-bottom: 10% !important;
+
+      }
+
+      #login-btn a:last-child {
+        margin-bottom: 0 !important;
+      }
+      .container-desktop button {
+        font-size: 16px !important;
+        height: 45px !important;
+        width: 128px !important;
+
+      }
+
+      #featured-text-mobile {
+        display: block !important;
+      }
+
+      .support-container {
+        font-size: 17px !important;
+        margin-top: 25px !important;
+      }
+
+      #welcome-text span {
+        font-size: 18px !important;
+      }
+
+      #featured-text-mobile {
+        margin-top: 33vh !important;
+      }
+    }
+
+    @media only screen and (max-width: 370px) {
+      .container-desktop button {
+        font-size: 14px !important;
+        width: 114px !important;
+      }
+
+      #featured-text-mobile {
+        margin-top: 35vh !important;
+      }
+
+      .container-desktop a {
+        margin: 0 !important;
+      }
+
+      #middle-container-image img {
+        height: 180px !important;
+        width: 180px !important;
+      }
+
+      #welcome-text span {
+        font-size: 17px !important;
+      }
+
+      #featured-text-mobile {
+        text-align: center;
+        width: 346px !important;
+        color: white;
+        font-size: 15px !important;
+        line-height: 1.5;
+        margin-top: 70%;
+      }
+
+      .support-container {
+        font-size: 15px !important;
+        margin-top: 25px !important;
+      }
+    }
+
+
+    /* Media Query ended */
+    body {
+      margin: 0;
+      padding: 0;
+      /* background-color: #151406; */
+    }
+
+    .container-desktop {
+      text-align: center;
+      font-size: 30px;
+      color: green;
+      position: relative;
+      margin: 10vh 0;
+    }
+
+    .container-desktop button {
+      background: transparent;
+      color: #024C23;
+      line-height: 40px;
+      font-size: 20px;
+      border-radius: 15px;
+      border: 2px solid #fff;
+      display: inline-block;
+      height: 60px;
+      float: center;
+      text-align: center;
+      padding: 0px !important;
+      width: 156px;
+      cursor: pointer;
+    }
+
+    .container-desktop button:hover {
+      background: transparent;
+      color: #fff;
+      line-height: 40px;
+      font-size: 20px;
+      border-radius: 15px;
+      border: 2px solid #024C23;
+      display: inline-block;
+      height: 60px;
+      float: center;
+      text-align: center;
+      padding: 0px !important;
+      width: 156px;
+      cursor: pointer;
+    }
+
+    .container-desktop a {
+      margin: 0 47px 0 0;
+    }
+
+    .container-desktop a:last-child {
+      margin: 0;
+    }
+
+
+    .middle-container {
+      display: flex;
+      justify-content: center !important;
+      margin: 25px 0 !important;
+    }
+
+    .support-container {
+      font-size: 22px;
+      margin-top: 20px;
+    }
+
+    #featured-text-mobile {
+      text-align: left;
+      width: 366px;
+      color: white;
+      font-size: 17px;
+      line-height: 1.5;
+      margin-top: 34vh;
+    }
+
+
+    /* .clearfix {
+  overflow: auto;
+}
+
+  .clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+} */
+  </style>
+
+  <script src="{% static 'jquery.min.js' %} "></script>
+</head>
+
+<body>
+
+  <div class="container-desktop" id="container-desktop">
+    <div id="welcome-text" style="display: flex;justify-content: center;align-items: center;"><img id="logo-here"
+        src="{% static 'image/astro-croped-logo.gif' %} " alt="" height="55px" width="50px"></div>
+
+    <div class="middle-container clearfix">
+      <div id="featured-text-desk"
+        style="text-align: left; width: 500px;color: white;font-size: 20px;line-height: 1.5;">
+        <h1 style="text-align:center;border-bottom:1px solid green;">Instructions</h1>
+      <ul>
+        <li>THIS APPLICATION WILL USE YOUR PHONE'S CAMERA AND FLASHLIGHT TO TAKE YOUR FINGERPRINT SCANS.</li>
+        <li>USE A PLAIN WHITE PAPER AS BASE AND KEEP YOUR FINGER ABOVE THE PAPER AND CLICK.</li>
+        <li>ENSURE THAT THERE IS NO SHADOW OF THE FINGERPRINT WHILE CLICKING THE IMAGE.</li>
+        <li>HOLD YOUR FINGER 5 INCHES AWAY FROM THE PHONE'S CAMERA .</li>
+        <li>JUST KEEP THE TOP 1/3RD PORTION OF YOUR RESPECTUIVE FINGER INSIDE THE INNERCIRCLE IN THE APP SCREEN WHILE TAKING FINGERPRINT IMAGES.
+        <li>IF YOU HAVE A NATURALLY WET SKIN PLEASE APPLY TALCUM POWDER TO MAKE IT DRY.</li>
+        <li>IF YOU HAVE VERY DRY SKIN PLEASE APPLY MOISTURIZER TO MAKE IT LITTLE WET.</li>
+      </ul>
+      </div>
+    </div>
+
+    <div id="featured-text-mobile" hidden>
+    <h1 style="text-align:center;margin-top:-60%;border-bottom:1px solid green;">Instructions</h1><br>
+      <ul>
+        <li>THIS APPLICATION WILL USE YOUR PHONE'S CAMERA AND FLASHLIGHT TO TAKE YOUR FINGERPRINT SCANS.</li>
+        <li>USE A PLAIN WHITE PAPER AS BASE AND KEEP YOUR FINGER ABOVE THE PAPER AND CLICK.</li>
+        <li>ENSURE THAT THERE IS NO SHADOW OF THE FINGERPRINT WHILE CLICKING THE IMAGE.</li>
+        <li>HOLD YOUR FINGER 5 INCHES AWAY FROM THE PHONE'S CAMERA .</li>
+        <li>JUST KEEP THE TOP 1/3RD PORTION OF YOUR RESPECTUIVE FINGER INSIDE THE INNERCIRCLE IN THE APP SCREEN WHILE TAKING FINGERPRINT IMAGES.
+        <li>IF YOU HAVE A NATURALLY WET SKIN PLEASE APPLY TALCUM POWDER TO MAKE IT DRY.</li>
+        <li>IF YOU HAVE VERY DRY SKIN PLEASE APPLY MOISTURIZER TO MAKE IT LITTLE WET.</li>
+      </ul>
+    </div>
+     <div id="login-btn" style=" display: inline-block;">
+     <button class="user_login" onclick="location.href='{% url 'nextToscan' %}'">GET STARTED</button>
+
+    </div>
+  </div>
+
+
+
+
+</body>
+</html>

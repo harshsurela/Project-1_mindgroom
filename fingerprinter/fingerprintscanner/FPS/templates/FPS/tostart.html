@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from fingerprinter.in/tostart by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 05 Mar 2021 21:07:00 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fingerprinter</title>
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %} ">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap');
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: rgb(0, 0, 0) !important;
+            font-family: 'Poppins' !important;
+            font-weight: 500 !important;
+            color: rgb(0, 0, 0);
+        }
+        a {
+            text-decoration: none;
+            font-family: 'Poppins' !important;
+            font-weight: 500 !important;
+        }
+        h1,h2,h3,h4,h5,input,span,button {
+            font-family: 'Poppins' !important;
+            font-weight: 500 !important;
+        }
+    </style>
+    
+<link rel="stylesheet" href="{% static 'css/userinterface/main-style.css' %} ">
+<script src="{% static 'jquery-3.5.1.min.js' %} "
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<style>
+  /* @media only screen and (max-width: 1200px) {
+  .container-desktop {
+    display: flex;
+  }
+  .container {
+    display: none ;
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  .container-desktop {
+    display: none;
+  }
+  .container {
+    display: center ;
+  }
+} */
+
+  body {
+    margin: 0;
+    padding: 0;
+    /* background-color: #151406; */
+  }
+
+  .container-desktop {
+    /* height: 50vh; */
+    text-align: center;
+    font-size: 30px;
+    color: green;
+    /* padding: 30vh  0; */
+    /* position: absolute; */
+  }
+  .container-desktop p {
+    position: relative;
+    /* margin: 50vh 0; */
+    margin: 40vh 0;
+  }
+</style>
+
+    <script src="{% static 'jquery.min.js' %}"></script>
+</head>
+
+<body >
+    
+
+
+<!-- <div class="box flex">
+  <p>
+    <img src="/static/image/logo.png" alt="Logo">
+  </p>
+  <p>App Name</p>
+</div> -->
+
+ <div class="container-desktop" id="container-desktop">
+  <p> Desktop version is not available <br>Please open in Mobile</p>
+</div>
+ 
+
+
+
+<div class="container" id="container">
+  <div class="logo">
+    <img src="{% static 'image/astro-croped-logo.gif' %}" alt="Logo" height="100px" width="auto">
+  </div>
+  <div class="appname">
+    <div id="appnametext" style="color: green;font-size: 28px;">Fingerprinter</div>
+  </div>
+</div>
+<!-- <span id="admin-code" hidden></span> -->
+
+<script>
+
+  function myFunction(x) {
+    var mobile = document.getElementById('container');
+    var desktop = document.getElementById('container-desktop');
+    if (x.matches) { // If media query matches
+      // document.body.style.backgroundColor = "green";
+      desktop.style.display = "none";
+      mobile.style.display = "flex";
+      // localStorage.setItem('admincode', document.getElementById("admin-code").innerHTML);
+      // console.log(localStorage.getItem('admincode'));
+    //   alert(localStorage.getItem('admincode'));
+      function redirect() {
+        window.location.href = "{% url 'checker' %}";
+      }
+      setTimeout(redirect, 2000);
+    } else {
+      // document.body.style.backgroundColor = "pink";
+      mobile.style.display = "center";
+      desktop.style.display = "none";
+
+    }
+  }
+
+  var x = window.matchMedia("(max-width: 600px)")
+  myFunction(x) // Call listener function at run time
+  x.addListener(myFunction) // Attach listener function on state changes 
+
+// if($(window).width() < 600){
+//   // do your stuff
+//   //2000 is equivalent to 2 seconds
+// }
+
+// function redirect() {
+
+//     window.location.href = "/start";
+//   }
+//   setTimeout(redirect, 3000); 
+
+</script>
+
+
+
+</body>
+
+
+<!-- Mirrored from fingerprinter.in/tostart by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 05 Mar 2021 21:07:00 GMT -->
+</html>
